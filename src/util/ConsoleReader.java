@@ -115,7 +115,16 @@ public class ConsoleReader
         String result;
         do
         {
-            result = promptString(prompt + " one of " + choices + "? ");
+            StringBuilder buf = new StringBuilder();
+            for( int i=0; i<choices.length; i++ )
+            {
+                if( i > 0 )
+                {
+                    buf.append( ", " );
+                }
+                buf.append( choices[i] );
+            }
+            result = promptString(prompt + " one of " + buf.toString() + "? ");
         }
         while (!choiceSet.contains(result));
         return result;
